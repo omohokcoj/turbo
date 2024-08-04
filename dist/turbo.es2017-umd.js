@@ -1,6 +1,6 @@
 /*
 Turbo 7.3.0
-Copyright © 2023 37signals LLC
+Copyright © 2024 37signals LLC
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
@@ -227,18 +227,12 @@ Copyright © 2023 37signals LLC
         const action = (submitter === null || submitter === void 0 ? void 0 : submitter.getAttribute("formaction")) || form.getAttribute("action") || form.action;
         return expandURL(action);
     }
-    function getExtension(url) {
-        return (getLastPathComponent(url).match(/\.[^.]*$/) || [])[0] || "";
-    }
-    function isHTML(url) {
-        return !!getExtension(url).match(/^(?:|\.(?:htm|html|xhtml|php))$/);
-    }
     function isPrefixedBy(baseURL, url) {
         const prefix = getPrefix(url);
         return baseURL.href === expandURL(prefix).href || baseURL.href.startsWith(prefix);
     }
     function locationIsVisitable(location, rootLocation) {
-        return isPrefixedBy(location, rootLocation) && isHTML(location);
+        return isPrefixedBy(location, rootLocation);
     }
     function getRequestURL(url) {
         const anchor = getAnchor(url);
@@ -249,12 +243,6 @@ Copyright © 2023 37signals LLC
     }
     function urlsAreEqual(left, right) {
         return expandURL(left).href == expandURL(right).href;
-    }
-    function getPathComponents(url) {
-        return url.pathname.split("/").slice(1);
-    }
-    function getLastPathComponent(url) {
-        return getPathComponents(url).slice(-1)[0];
     }
     function getPrefix(url) {
         return addTrailingSlash(url.origin + url.pathname);

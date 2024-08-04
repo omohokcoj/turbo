@@ -34,7 +34,7 @@ export function isPrefixedBy(baseURL: URL, url: URL) {
 }
 
 export function locationIsVisitable(location: URL, rootLocation: URL) {
-  return isPrefixedBy(location, rootLocation) && isHTML(location)
+  return isPrefixedBy(location, rootLocation)
 }
 
 export function getRequestURL(url: URL) {
